@@ -4,12 +4,12 @@ A quick and easy hook for using Fetch with React.
 
 ## Install
 
-`npm install usefetch`
+`npm install @chrislaughlin/usefetch`
 
 ## Usage
 
 ```jsx
-import useFetch from 'usefetch'
+import useFetch from '@chrislaughlin/usefetch'
 
 const Example = () => {
     const {

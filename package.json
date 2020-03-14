@@ -1,5 +1,5 @@
 {
-  "name": "usefetch",
+  "name": "@chrislaughlin/usefetch",
   "version": "1.0.0",
   "description": "useFetch React component",
   "main": "lib/index.js",
