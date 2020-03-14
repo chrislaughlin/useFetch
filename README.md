@@ -1,16 +1,36 @@
 # useFetch
 
-[![Travis][build-badge]][build]
-[![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
+A quick and easy hook for using Fetch with React.
 
-Describe useFetch here.
+## Install
 
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
+`npm install usefetch`
 
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
+## Usage
 
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
+```jsx
+import useFetch from 'usefetch'
+
+const Example = () => {
+    const {
+        isLoading,
+        error,
+        data
+    } = useFetch('https://get.geojs.io/v1/ip/country.json?ip=8.8.8.8')
+
+    if (isLoading) {
+        return <p>Loading.....</p>
+    }
+
+    if (error) {
+        return <p>{JSON.stringify(error)}</p>
+    }
+
+    return (
+        <p>
+            {JSON.stringify(data)}
+        </p>
+    )
+}
+```
+

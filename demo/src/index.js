@@ -1,15 +1,26 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {render} from 'react-dom'
 
-import Example from '../../src'
+import useFetch from '../../src'
 
-export default class Demo extends Component {
-  render() {
-    return <div>
-      <h1>useFetch Demo</h1>
-      <Example/>
-    </div>
-  }
+const Example = () => {
+    const { isLoading, error, data} = useFetch('https://get.geojs.io/v1/ip/country.json?ip=8.8.8.8')
+
+    if (isLoading) {
+        return <p>Loading.....</p>
+    }
+
+    if (error) {
+        return <p>{JSON.stringify(error)}</p>
+    }
+
+    return (
+        <div>
+            <p>
+                {JSON.stringify(data)}
+            </p>
+        </div>
+    )
 }
 
-render(<Demo/>, document.querySelector('#demo'))
+render(<Example/>, document.querySelector('#demo'))

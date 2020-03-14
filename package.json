@@ -1,6 +1,6 @@
 {
-  "name": "useFetch",
-  "version": "1.0.0",
+  "name": "usefetch",
+  "version": "0.0.0",
   "description": "useFetch React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -28,10 +28,10 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
   },
-  "author": "",
-  "homepage": "",
+  "author": "Chris Laughlin <bluntm@gmail.com>",
+  "homepage": "https://github.com/chrislaughlin/useFetch",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/chrislaughlin/useFetch.git",
   "keywords": [
     "react-component"
   ]
