@@ -12,11 +12,12 @@ A quick and easy hook for using Fetch with React.
 import useFetch from '@chrislaughlin/usefetch'
 
 const Example = () => {
+    
     const {
         isLoading,
         error,
         data
-    } = useFetch('https://get.geojs.io/v1/ip/country.json?ip=8.8.8.8')
+    } = useFetch('https://get.geojs.io/v1/ip/country.json?ip=8.8.8.8', fetchOptions)
 
     if (isLoading) {
         return <p>Loading.....</p>
@@ -61,9 +62,6 @@ const CustomTimeout = () => {
 };
 ```
 
-
-```
-
 ### Aborting a request via consuming application
 
 ```jsx
@@ -100,5 +98,3 @@ const AbortExample = () => {
     )
 };
 ```
-
-
