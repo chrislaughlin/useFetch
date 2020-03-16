@@ -1,29 +1,56 @@
-import { useState, useEffect } from 'react';
+import {
+  useState,
+  useEffect,
+  useRef,
+} from 'react';
 
 const useFetch = (url, options) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
+  const abortControllerRef = useRef();
 
   useEffect(() => {
-    fetch(url, options || {})
+
+    abortControllerRef.current = new AbortController();
+
+    setIsLoading(true);
+
+    const fetchOptions = options || {};
+    
+    let timeout;
+
+    if (fetchOptions.timeout) {
+      timeout = setTimeout(() => abortControllerRef.current.abort(), fetchOptions.timeout);
+    }
+
+    fetch(url, {...fetchOptions, signal: abortControllerRef.current.signal})
         .then(res => res.json())
         .then(response => {
           setData(response);
           setIsLoading(false);
           setError(null);
         })
-        .catch(error => {
+      .catch(error => {
           setData(null);
           setIsLoading(false);
           setError(error);
         })
-  }, [url, options])
+      
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+      
+      abortControllerRef.current.abort();
+    }
+  }, [url])
 
   return {
     isLoading,
     error,
-    data
+    data,
+    abortController: abortControllerRef.current,
   }
 };
 
